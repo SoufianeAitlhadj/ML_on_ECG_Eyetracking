@@ -35,7 +35,8 @@ Intended run order: `merge_data_unprocessed.py` → `preprocessing.ipynb` → `h
 
 Raw eye-tracking samples are filtered, cleaned and aggregated into fixations. Each fixation's coordinates are then mapped to an Area of Interest (AOI) by spatial discretization, and fixations are put back in temporal order to reconstruct one scanpath per participant and stimulus. The result is a sequence of AOI labels, which is the only information the HMM sees.
 
-![Preprocessing pipeline](preprocessing_ecg_data_figure.png)
+<img width="1507" height="1310" alt="preprocessing_ecg_data_figure" src="https://github.com/user-attachments/assets/8734cad1-7500-477c-9595-377c2a8acf97" />
+
 
 ### 2. Hidden Markov Model as the generative model
 
@@ -47,7 +48,8 @@ We chose an HMM because a scanpath is naturally a sequence: the eye moves betwee
 - **Training**: Baum-Welch (EM), alternating an E-step (state posteriors given the current model) and an M-step (parameter updates) until convergence.
 - **Uses**: score unseen scanpaths (log-likelihood), decode hidden-state sequences, and sample new synthetic scanpaths.
 
-![HMM algorithm](HMM_Algorithm.png)
+<img width="6921" height="1885" alt="HMM_Algorithm" src="https://github.com/user-attachments/assets/3c55a43b-525c-4500-af05-fd748214cced" />
+
 
 ### 3. Evaluation
 
@@ -57,7 +59,8 @@ We evaluate on three layers so that no single metric can flatter the model:
 2. **Statistical**: compare the transition matrix of real test scanpaths (`T_real`) with that of generated ones (`T_gen`).
 3. **Behavioural**: dynamic-programming (alignment) similarity between each generated scanpath and its closest real scanpath.
 
-![Evaluation pipeline](hmm_evaluation_pipeline.png)
+<img width="2851" height="3713" alt="hmm_evaluation_pipeline" src="https://github.com/user-attachments/assets/53350658-caf9-4b11-98e8-95b39e0fb517" />
+
 
 ---
 
